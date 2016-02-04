@@ -18,3 +18,4 @@ def load_config():
 if __name__ == '__main__':
     config = load_config()
     sqlite_connector = sqliteConnector(config.get("DB", "DB_path"), config.get("DB", "DB_path_to_extensions"))
+    sqlite_connector.getPostsList("2000-01-01 00:00:00", "2000-01-01 00:00:00")
