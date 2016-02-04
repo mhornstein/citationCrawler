@@ -1,5 +1,8 @@
 import ConfigParser
 import sys
+from sqlite_connector import *
+
+Base = declarative_base()
 
 def load_config():
     try:
@@ -9,9 +12,9 @@ def load_config():
         config.eval = lambda sec,key: eval(config.get(sec,key))
         config.getfilename = lambda: config_file
         return config
-    except:
+    except Exception as e:
         exit(-1)
 
 if __name__ == '__main__':
     config = load_config()
-    pass
+    sqlite_connector = sqliteConnector(config.get("DB", "DB_path"), config.get("DB", "DB_path_to_extensions"))
